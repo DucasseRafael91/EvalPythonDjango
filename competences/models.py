@@ -14,8 +14,8 @@ class Competence(models.Model):
     def __str__(self):
         return self.name
 
-class UtilisateurCompetence(models.Model):
-    utilisateur = models.ForeignKey(User, on_delete=models.CASCADE)
+class UserCompetence(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     competence = models.ForeignKey(Competence, on_delete=models.CASCADE)
 
 class Slot(models.Model):
