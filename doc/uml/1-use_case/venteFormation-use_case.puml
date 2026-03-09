@@ -1,0 +1,37 @@
+@startuml venteFormation_use_case
+
+left to right direction
+
+actor Visiteur as v
+actor Utilisateur as u
+
+v <|-right- u
+
+rectangle Competences {
+  usecase "Afficher les prochains créneaux où un utilisateur a proposé d’apporter son aide" as UC1
+  usecase "Afficher la liste des compétences disponibles" as UC2
+  usecase "Indiquer parmi la liste des compétences celles qu'il posséde" as UC3
+  usecase "Indiquer les créneaux où il est disponible pour les mettre en oeuvre" as UC4
+  usecase "Indiquer les créneaux où il recherche quelqu’un pour l’aider dans une activité" as UC5
+  usecase "Afficher les prochains créneaux où un autre utilisateur U2 recherche quelqu’un pour l’aider" as UC6
+  usecase "Indiquer qu’il désire se rendre disponible" as UC7
+  usecase "Afficher les prochains créneaux où un autre utilisateur a indiqué se rendre disponible pour l’aider" as UC8
+  usecase "Se connecter" as UC9
+}
+
+v -- UC1
+v -- UC2
+u -- UC3
+u -- UC4
+u -- UC5
+u -- UC6
+u -- UC8
+
+ UC9 .up.> UC3 : include
+ UC9 .up.> UC4 : include
+ UC9 .up.> UC5 : include
+ UC9 .up.> UC6 : include
+ UC7 .up.> UC6 : extends
+ UC9 .up.> UC8 : include
+
+@enduml

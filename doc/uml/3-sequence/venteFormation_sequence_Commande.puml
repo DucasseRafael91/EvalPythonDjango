@@ -1,0 +1,47 @@
+@startuml
+title Diagramme de Séquence de commande
+
+actor Utilisateur
+participant "Interface de Commande" as Interface
+participant "Base de données" as BDD
+
+activate Interface
+
+Interface -> BDD : Requête pour obtenir tous les clients de l'utilisateur
+activate BDD
+BDD --> Interface : Retour des clients
+deactivate BDD
+
+Interface -> Utilisateur : Affichage des clients
+Utilisateur -> Interface : Choix du client
+
+Interface -> BDD : Requête pour obtenir toutes les formations
+activate BDD
+BDD --> Interface : Retour des formations
+deactivate BDD
+
+activate Utilisateur
+Interface -> Utilisateur : Affichage des formations
+loop Pour chaque formation sélectionnée par l'utilisateur
+    Utilisateur -> Interface : Sélection d'une formation
+    Interface -> Utilisateur : Affichage de la commande en cours
+end
+deactivate Utilisateur
+
+Interface -> BDD : Requête de création d'une commande
+activate BDD
+BDD --> Interface : Validation de la création de la commande
+
+loop Pour chaque formation sélectionnée par l'utilisateur
+    Interface -> BDD : Requête de création d'une ligne de commande
+    BDD --> Interface : Validation de la création de la ligne de commande
+end
+deactivate BDD
+
+activate Utilisateur
+Interface -> Utilisateur : Affichage de la commande
+deactivate Utilisateur
+
+deactivate Interface
+
+@enduml
