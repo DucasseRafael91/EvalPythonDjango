@@ -1,34 +1,43 @@
-@startuml bank
+@startuml
 
-class TypeCompte {
-    -int id
-    -string Type
-    -int intérets
+class Competence {
+    id : int
+    nom : string
 }
 
-class Compte {
-    -int id
-    -double solde
+class Categorie {
+    id : int
+    nom : string
 }
 
-  class Client {
-    -int id
-    -string nom
-    -string prenom
+class Creneau {
+    id : int
+    activite : string
+    date : date
 }
 
-class Operation {
-    -int id
+class Utilisateur {
+    int : id
+    string : username
+    string : motdepasse
+    string : prenom
+    string : nom
+    string : email
 }
 
-class TypeOperation {
-    -int id
-    -string type
-}
+' Une catégorie peut avoir plusieurs compétences et une compétence à une categorie
+Categorie "1" -- "0..*" Competence : contient
 
-Compte "0..n" --> "1" TypeCompte : est typée
-Compte "0..n" -- "1" Client : est possédé
-Compte "1" -- "0..n" Operation : effectué
-Operation "0..n" -- "1" TypeOperation : est typée
+' Un utilisateur peut avoir plusieurs compétences et une compétence peut avoir plusieurs utilisateurs
+Utilisateur "0..*" -- "0..*" Competence : possede
+
+' Un créneau correspond à une compétence demandée
+Creneau "0..*" -- "1" Competence : est composé
+
+' Un utilisateur peut créer plusieurs créneaux et un créneau est créé par un seul utilisateur
+Utilisateur "1" -- "0..*" Creneau : crée
+
+' Un utilisateur peut proposer son aide pour plusieurs créneaux et un créneau peut être aidé par plusieurs utilisateurs
+Utilisateur "0..1" -- "0..*" Creneau : aidé
 
 @enduml
