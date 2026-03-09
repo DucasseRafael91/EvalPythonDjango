@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Mes compétences{% endblock %}
+
+{% block content %}
+<h2>Mes compétences</h2>
+
+{% if user_competences_list %}
+    <ul>
+        {% for user_competence in user_competences_list %}
+            <li>{{ user_competence.competence.name }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Vous n'avez pas encore de compétences enregistrées.</p>
+{% endif %}
+{% endblock %}
