@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 class Categorie(models.Model):
@@ -8,6 +9,11 @@ class Competence(models.Model):
     categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE)
 
 class UtilisateurCompetence(models.Model):
-    utilisateur = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    utilisateur = models.ForeignKey(User, on_delete=models.CASCADE)
     competence = models.ForeignKey(Competence, on_delete=models.CASCADE)
 
+class Slot(models.Model):
+    creator_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    helper_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    activity = models.CharField(max_length=2002)
+    date = models.DateTimeField()
