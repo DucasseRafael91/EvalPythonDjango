@@ -5,7 +5,6 @@ left to right direction
 actor Visiteur as v
 actor Utilisateur as u
 
-v <|-right- u
 
 rectangle Competences {
   usecase "Afficher les prochains créneaux où un utilisateur a proposé d’apporter son aide" as UC1
