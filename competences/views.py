@@ -32,16 +32,20 @@ def skills(request):
 
 @login_required
 def add_slot(request):
+    used_competences = UserCompetence.objects.filter(user=request.user)
+    available_competences = Competence.objects.exclude(usercompetence__in=used_competences)
+
     if request.method == "POST":
         form = SlotForm(request.POST)
+        form.fields['competence'].queryset = available_competences
 
         if form.is_valid():
             slot = form.save(commit=False)
             slot.creator_user = request.user
-            form.save()
+            slot.save()
             return redirect("competences:index")
-
     else:
         form = SlotForm()
+        form.fields['competence'].queryset = available_competences
 
     return render(request, "competences/add.html", {"form": form})
