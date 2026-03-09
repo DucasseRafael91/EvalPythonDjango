@@ -2,7 +2,7 @@ from django.contrib.auth import user_logged_in
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from competences.forms import UserCompetenceForm
+from competences.forms import UserCompetenceForm, SlotForm
 from competences.models import Slot, Competence, UserCompetence
 
 
@@ -29,3 +29,19 @@ def skills(request):
 
     context = {"user_competences_list": user_competences_list,"form": form}
     return render(request, "competences/skills.html", context)
+
+@login_required
+def add_slot(request):
+    if request.method == "POST":
+        form = SlotForm(request.POST)
+
+        if form.is_valid():
+            slot = form.save(commit=False)
+            slot.creator_user = request.user
+            form.save()
+            return redirect("competences:index")
+
+    else:
+        form = SlotForm()
+
+    return render(request, "competences/add.html", {"form": form})
