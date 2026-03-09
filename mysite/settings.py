@@ -53,7 +53,7 @@ MIDDLEWARE = [
 
 LOGIN_REDIRECT_URL = "/competences/"
 LOGOUT_REDIRECT_URL = "/competences/"
-LOGIN_URL = "/login/"
+LOGIN_URL = "/competences/login"
 
 ROOT_URLCONF = 'mysite.urls'
 
