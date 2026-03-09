@@ -12,7 +12,7 @@ rectangle Competences {
   usecase "Indiquer parmi la liste des compétences celles qu'il posséde" as UC3
   usecase "Indiquer les créneaux où il est disponible pour les mettre en oeuvre" as UC4
   usecase "Indiquer les créneaux où il recherche quelqu’un pour l’aider dans une activité" as UC5
-  usecase "Afficher les prochains créneaux où un autre utilisateur U2 recherche quelqu’un pour l’aider" as UC6
+  usecase "Afficher les prochains créneaux où un autre utilisateur recherche quelqu’un pour l’aider" as UC6
   usecase "Indiquer qu’il désire se rendre disponible" as UC7
   usecase "Afficher les prochains créneaux où un autre utilisateur a indiqué se rendre disponible pour l’aider" as UC8
   usecase "Se connecter" as UC9
