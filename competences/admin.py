@@ -11,8 +11,11 @@ class CompetenceAdmin(admin.ModelAdmin):
 class UserCompetenceAdmin(admin.ModelAdmin):
     list_display = ["user", "competence"]
 
+class SlotAdmin(admin.ModelAdmin):
+    list_display = ["activity", "competence", "date", "creator_user", "helper_user"]
+
 
 admin.site.register(Categorie,CategorieAdmin)
 admin.site.register(Competence, CompetenceAdmin)
 admin.site.register(UserCompetence, UserCompetenceAdmin)
-admin.site.register(Slot)
+admin.site.register(Slot, SlotAdmin)
