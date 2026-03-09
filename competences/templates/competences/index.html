@@ -16,6 +16,7 @@
 {% endblock %}
 
 {% block content %}
+{% if not user.is_authenticated %}
 <div class="row">
     {% if slots_list %}
         {% for slot in slots_list %}
@@ -35,4 +36,7 @@
         <p>Pas de créneau</p>
     {% endif %}
 </div>
+{% else %}
+<h5>TETST</h5>
+{% endif %}
 {% endblock %}
