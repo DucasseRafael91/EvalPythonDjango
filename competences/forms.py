@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import UserCompetence, Competence
+from .models import UserCompetence, Competence, Slot
 
 
 class UserCompetenceForm(ModelForm):
@@ -10,6 +10,19 @@ class UserCompetenceForm(ModelForm):
     class Meta:
         model = UserCompetence
         fields = ['competence']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['competence'].queryset = Competence.objects.all()
+
+
+class SlotForm(ModelForm):
+    date = forms.DateField( widget=forms.DateInput(attrs={'type': 'date'}))
+    competence = forms.ModelChoiceField(queryset=None, label="Compétence")
+
+    class Meta:
+        model = Slot
+        fields = ['activity', 'competence', 'date']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
