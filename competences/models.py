@@ -23,4 +23,4 @@ class Slot(models.Model):
     helper_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='slots_helped')
     competence = models.ForeignKey(Competence,on_delete=models.CASCADE)
     activity = models.CharField(max_length=200)
-    date = models.DateTimeField()
+    date = models.DateField()
