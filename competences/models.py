@@ -11,6 +11,9 @@ class Competence(models.Model):
     name = models.CharField(max_length=50)
     categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 class UtilisateurCompetence(models.Model):
     utilisateur = models.ForeignKey(User, on_delete=models.CASCADE)
     competence = models.ForeignKey(Competence, on_delete=models.CASCADE)
