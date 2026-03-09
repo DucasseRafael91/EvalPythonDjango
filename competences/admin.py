@@ -1,3 +1,7 @@
 from django.contrib import admin
+from competences.models import Categorie, Competence, UtilisateurCompetence, Slot
 
-# Register your models here.
+admin.site.register(Categorie)
+admin.site.register(Competence)
+admin.site.register(UtilisateurCompetence)
+admin.site.register(Slot)
