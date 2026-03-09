@@ -24,3 +24,6 @@ class Slot(models.Model):
     competence = models.ForeignKey(Competence,on_delete=models.CASCADE)
     activity = models.CharField(max_length=200)
     date = models.DateField()
+
+    def __str__(self):
+        return f"{self.activity} - {self.competence.name} - {self.date}"
