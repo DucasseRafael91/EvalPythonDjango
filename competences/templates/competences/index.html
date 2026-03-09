@@ -5,5 +5,13 @@
 {% block title %}Accueil{% endblock %}
 
 {% block content %}
-        <h1 class="mb-4">TEST</h1>
+        {% if slots_list %}
+    <ul>
+    {% for slot in slots_list %}
+        <li><a href="#">{{ slot.activity }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Slots are available.</p>
+{% endif %}
 {% endblock %}
