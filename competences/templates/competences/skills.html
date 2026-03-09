@@ -15,4 +15,14 @@
 {% else %}
     <p>Vous n'avez pas encore de compétences enregistrées.</p>
 {% endif %}
+
+<hr>
+
+<h3>Ajouter une compétence</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Ajouter</button>
+</form>
+
 {% endblock %}
