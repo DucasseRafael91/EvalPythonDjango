@@ -49,3 +49,8 @@ def add_slot(request):
         form.fields['competence'].queryset = available_competences
 
     return render(request, "competences/add.html", {"form": form})
+
+def search(request):
+    slots_list = Slot.objects.filter(helper_user__isnull=True).exclude(creator_user=request.user)
+    context = {"slots_list": slots_list}
+    return render(request, "competences/search.html", context)
