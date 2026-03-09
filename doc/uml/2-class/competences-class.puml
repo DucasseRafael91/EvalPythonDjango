@@ -1,18 +1,18 @@
 @startuml
 
 class Competence {
-    id : int
-    nom : string
+    int : id
+    string : nom
 }
 
 class Categorie {
-    id : int
-    nom : string
+    int : id
+    string : nom
 }
 
 class Creneau {
-    id : int
-    activite : string
+    id : id
+    string : activite
     date : date
 }
 
