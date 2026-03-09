@@ -20,14 +20,14 @@
                 <span class="me-3">
                     Bonjour {{ user.username }}
                 </span>
-                <form method="post" action="#">
+                <form method="post" action="{% url 'competences:logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-outline-light btn-sm">
                         Déconnexion
                     </button>
                 </form>
             {% else %}
-                <a class="btn btn-outline-light btn-sm" href="#">
+                <a class="btn btn-outline-light btn-sm" href="{% url 'competences:login' %}">
                     Connexion
                 </a>
             {% endif %}
