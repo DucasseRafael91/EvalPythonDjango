@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import QuerySet
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
-from competences.forms import UserCompetenceForm, SlotForm, AvailableForm
+from competences.forms import UserCompetenceForm, SlotForm, AvailableForm, SubmitAvailableForm
 from competences.models import Competence, UserCompetence, Slot
 
 
@@ -95,6 +95,33 @@ def add_slot(request: HttpRequest) -> HttpResponse:
         form.fields["competence"].queryset = available_competences
 
     return render(request, "competences/add.html", {"form": form})
+
+@login_required
+def submit_available(request, slot_id):
+
+    slot = get_object_or_404(Slot, id=slot_id)
+
+    used_competences = UserCompetence.objects.filter(user=request.user)
+    available_competences = Competence.objects.exclude(usercompetence__in=used_competences)
+
+    if request.method == "POST":
+        form = SubmitAvailableForm(request.POST, instance=slot)
+        form.fields["competence"].queryset = available_competences
+
+        if form.is_valid():
+            slot = form.save(commit=False)
+            slot.creator_user = request.user
+            slot.save()
+            return redirect("competences:index")
+
+    else:
+        form = SubmitAvailableForm(instance=slot)
+        form.fields["competence"].queryset = available_competences
+
+    return render(request, "competences/form_submit_available.html", {
+        "form": form,
+        "slot": slot
+    })
 
 @login_required
 def search(request: HttpRequest) -> HttpResponse:
