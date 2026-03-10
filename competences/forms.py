@@ -33,4 +33,3 @@ class AvailableForm(ModelForm):
     class Meta:
         model = Slot
         fields = ['date']
-
