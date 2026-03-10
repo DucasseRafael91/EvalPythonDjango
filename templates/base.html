@@ -1,58 +1,76 @@
 {% load static %}
 {% load django_bootstrap5 %}
 
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Application Competence{% endblock %}</title>
-
     {% bootstrap_css %}
+    <style>
+        /* Sidebar scroll */
+        .sidebar {
+            min-height: 100vh;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <a href="{% url 'competences:index' %}"><span class="navbar-brand mb-0 h1">Application Competence</span></a>
-
+        <a class="navbar-brand mb-0 h1 text-decoration-none" href="{% url 'competences:index' %}">
+            Application Competence
+        </a>
         <div class="d-flex align-items-center text-white">
             {% if user.is_authenticated %}
-                <span class="me-3">
-                    Bonjour {{ user.username }}
-                </span>
+                <span class="me-3">Bonjour {{ user.username }}</span>
                 <form method="post" action="{% url 'competences:logout' %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-light btn-sm">
-                        Déconnexion
-                    </button>
+                    <button type="submit" class="btn btn-outline-light btn-sm">Déconnexion</button>
                 </form>
             {% else %}
-                <a class="btn btn-outline-light btn-sm" href="{% url 'competences:login' %}">
-                    Connexion
-                </a>
+                <a class="btn btn-outline-light btn-sm" href="{% url 'competences:login' %}">Connexion</a>
             {% endif %}
         </div>
     </div>
 </nav>
-
 <div class="container-fluid">
     <div class="row">
-        {% if not user.is_authenticated %}
-        <nav class="col-md-3 col-lg-2 d-md-block bg-white border-end min-vh-100 p-3">
+
+        <nav class="col-md-3 col-lg-2 d-md-block bg-white border-end sidebar p-3">
             <ul class="nav flex-column">
-                <h5 class="mb-3">Toutes nos compétences disponibles</h5>
-                {% block sidebar %}{% endblock %}
+                {% if not user.is_authenticated %}
+                    <h5 class="mb-3">Toutes nos compétences disponibles</h5>
+                    {% block sidebar %}{% endblock %}
+                {% else %}
+                    <h5 class="mb-3">Menu</h5>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link text-dark" href="{% url 'competences:skills' %}">
+                            Renseignez vos compétences
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link text-dark" href="{% url 'competences:add' %}">
+                            Créer une recherche d'aide
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link text-dark" href="{% url 'competences:search' %}">
+                            Afficher les demandes d'aides disponibles
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </nav>
-        {% endif %}
 
         <main class="col-md-9 col-lg-10 p-4">
             {% block content %}{% endblock %}
         </main>
+
     </div>
 </div>
-
 {% bootstrap_javascript %}
-
 </body>
 </html>

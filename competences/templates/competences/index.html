@@ -17,17 +17,17 @@
 
 {% block content %}
 {% if not user.is_authenticated %}
+    <h2>Derniéres aides réalisées</h2>
+    <hr>
 <div class="row">
     {% if slots_list %}
         {% for slot in slots_list %}
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">{{ slot.competence }}</h5>
+                        <h5 class="card-title">Compétence : {{ slot.competence }}</h5>
                         <p class="card-text">Activité : {{ slot.activity }}</p>
                         <p class="card-text">Date : {{ slot.date }}</p>
-                        <p class="card-text">Personne ayant initié la demande : Anonyme</p>
-                        <p class="card-text">Personne ayant proposé son aide : Anonyme</p>
                     </div>
                 </div>
             </div>
@@ -57,8 +57,5 @@
         {% endif %}
     <hr>
     </div>
-<h5><a href="{% url 'competences:skills' %}">Renseignez vos compétences</a></h5>
-<h5><a href="{% url 'competences:add' %}">Créer une recherche d'aide</a></h5>
-<h5><a href="{% url 'competences:search' %}">Afficher les demandes d'aides disponibles</a></h5>
 {% endif %}
 {% endblock %}
