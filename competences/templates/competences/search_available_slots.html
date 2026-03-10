@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Accueil{% endblock %}
+
+
+{% block content %}
+<h1>Créneaux Disponibles</h1>
+
+{% if slots_list %}
+    <ul>
+{% for slot in slots_list %}
+<li>
+    {{ slot.date }} - {{ slot.helper_user }}
+    <a href="{% url 'competences:purpose_help' slot.id %}">Prendre le créneau</a>
+</li>
+{% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun résultat trouvé.</p>
+{% endif %}
+{% endblock %}
+
