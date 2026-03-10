@@ -12,7 +12,9 @@
 {% for slot in slots_list %}
 <li>
     {{ slot.date }} - {{ slot.helper_user }}
-    <a href="{% url 'competences:purpose_help' slot.id %}">Prendre le créneau</a>
+    <a href="{% url 'competences:submit_available' slot.id %}">
+        Prendre le créneau
+    </a>
 </li>
 {% endfor %}
     </ul>

@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}Prendre un créneau{% endblock %}
+
+{% block content %}
+
+<h1>Prendre le créneau du {{ slot.date }} proposé par {{ slot.helper_user }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Valider</button>
+</form>
+
+{% endblock %}
