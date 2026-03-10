@@ -27,9 +27,7 @@ class Slot(models.Model):
                                                         related_name='slots_created')
     helper_user: models.ForeignKey = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
                                                        related_name='slots_helped')
-    competence: models.ForeignKey = models.ForeignKey(Competence, on_delete=models.CASCADE)
-    activity: models.CharField = models.CharField(max_length=200)
+    competence: models.ForeignKey = models.ForeignKey(Competence, on_delete=models.CASCADE, null=True, blank=True,)
+    activity: models.CharField = models.CharField(max_length=200, null=True, blank=True,)
     date: models.DateField = models.DateField()
 
-    def __str__(self):
-        return f"{self.activity} - {self.competence.name} - {self.date}"
