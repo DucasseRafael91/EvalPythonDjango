@@ -6,8 +6,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
 
 from .models import Slot
-from competences.forms import UserCompetenceForm, SlotForm
-from competences.models import Competence, UserCompetence
+from competences.forms import UserCompetenceForm, SlotForm, AvailableForm
+from competences.models import Competence, UserCompetence, Slot
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -56,6 +56,27 @@ def skills(request: HttpRequest) -> HttpResponse:
         "form": form,
     }
     return render(request, "competences/skills.html", context)
+
+
+@login_required
+def available(request: HttpRequest) -> HttpResponse:
+    available_slots_list: QuerySet[Slot] = (Slot.objects.filter(helper_user=request.user)
+                                            .filter(creator_user__isnull=True)
+                                            .order_by("-date"))
+
+    if request.method == "POST":
+        form = AvailableForm(request.POST)
+
+        if form.is_valid():
+            slot: Slot = form.save(commit=False)
+            slot.helper_user = request.user
+            slot.save()
+            return redirect("competences:available")
+    else:
+        form = AvailableForm()
+
+    context = {"form": form, "available_slots_list": available_slots_list}
+    return render(request, "competences/available.html", context)
 
 
 @login_required

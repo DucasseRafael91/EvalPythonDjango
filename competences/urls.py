@@ -9,6 +9,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path('skills/', views.skills, name='skills'),
     path('add/', views.add_slot, name='add'),
+    path('available/', views.available, name='available'),
     path('search/', views.search, name='search'),
     path('purpose_help/<int:slot_id>/', views.purpose_help, name='purpose_help'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
