@@ -31,3 +31,6 @@ class Slot(models.Model):
     activity: models.CharField = models.CharField(max_length=200, null=True, blank=True,)
     date: models.DateField = models.DateField()
 
+    def __str__(self):
+        return f"{self.activity} - {self.competence} - {self.date}"
+
