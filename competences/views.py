@@ -4,8 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import QuerySet
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
-
-from .models import Slot
 from competences.forms import UserCompetenceForm, SlotForm, AvailableForm
 from competences.models import Competence, UserCompetence, Slot
 
@@ -78,7 +76,6 @@ def available(request: HttpRequest) -> HttpResponse:
     context = {"form": form, "available_slots_list": available_slots_list}
     return render(request, "competences/available.html", context)
 
-
 @login_required
 def add_slot(request: HttpRequest) -> HttpResponse:
     used_competences: QuerySet[UserCompetence] = UserCompetence.objects.filter(user=request.user)
@@ -99,13 +96,23 @@ def add_slot(request: HttpRequest) -> HttpResponse:
 
     return render(request, "competences/add.html", {"form": form})
 
-
+@login_required
 def search(request: HttpRequest) -> HttpResponse:
     slots_list: QuerySet[Slot] = Slot.objects.filter(helper_user__isnull=True).exclude(creator_user=request.user)
     context = {"slots_list": slots_list}
     return render(request, "competences/search.html", context)
 
+@login_required
+def search_available_slots(request: HttpRequest) -> HttpResponse:
+    slots_list: QuerySet[Slot] = (Slot.objects
+                                  .filter(helper_user__isnull=False)
+                                  .filter(creator_user__isnull=True)
+                                  .exclude(helper_user=request.user))
+    context = {"slots_list": slots_list}
+    return render(request, "competences/search_available_slots.html", context)
 
+
+@login_required
 def purpose_help(request: HttpRequest, slot_id: int) -> HttpResponse:
     slot: Slot = get_object_or_404(Slot, id=slot_id)
     slot.helper_user = request.user
