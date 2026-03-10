@@ -26,3 +26,11 @@ class SlotForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['competence'].queryset = Competence.objects.all()
+
+class AvailableForm(ModelForm):
+    date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+    class Meta:
+        model = Slot
+        fields = ['date']
+
