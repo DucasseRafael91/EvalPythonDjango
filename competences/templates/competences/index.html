@@ -37,6 +37,26 @@
     {% endif %}
 </div>
 {% else %}
+    <h2>Vos propositions d'aides</h2>
+    <div class="row">
+        {% if my_slots_list_porposed %}
+            {% for slot in my_slots_list_porposed %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ slot.competence }}</h5>
+                            <p class="card-text">Activité : {{ slot.activity }}</p>
+                            <p class="card-text">Date : {{ slot.date }}</p>
+                            <p class="card-text">Personne ayant proposé son aide : {{ slot.helper_user }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Pas de créneau</p>
+        {% endif %}
+    <hr>
+    </div>
 <h5><a href="{% url 'competences:skills' %}">Renseignez vos compétences</a></h5>
 <h5><a href="{% url 'competences:add' %}">Créer une recherche d'aide</a></h5>
 <h5><a href="{% url 'competences:search' %}">Afficher les demandes d'aides disponibles</a></h5>

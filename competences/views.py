@@ -10,25 +10,33 @@ from competences.models import Slot, Competence, UserCompetence
 def index(request):
     slots_list = Slot.objects.filter(helper_user__isnull=False).order_by("-date")
     competences_list = Competence.objects.all()
-    context = {"slots_list": slots_list, "competences_list": competences_list}
+    my_slots_list_porposed = []
+    if request.user.is_authenticated:
+        my_slots_list_porposed = Slot.objects.filter(creator_user=request.user).filter(helper_user__isnull=False).order_by("-date")
+    context = {"slots_list": slots_list, "competences_list": competences_list, "my_slots_list_porposed": my_slots_list_porposed}
     return render(request, "competences/index.html", context)
 
 
 @login_required
 def skills(request):
     user_competences_list = UserCompetence.objects.filter(user=request.user)
+    available_competences = Competence.objects.exclude(usercompetence__in=user_competences_list)
 
     if request.method == "POST":
         form = UserCompetenceForm(request.POST)
+        form.fields["competence"].queryset = available_competences
+
         if form.is_valid():
             user_competence = form.save(commit=False)
             user_competence.user = request.user
             user_competence.save()
-            return redirect('competences:skills')
+            return redirect("competences:skills")
     else:
         form = UserCompetenceForm()
+        form.fields["competence"].queryset = available_competences
 
-    context = {"user_competences_list": user_competences_list,"form": form}
+    context = {"user_competences_list": user_competences_list,"available_competences": available_competences,"form": form }
+
     return render(request, "competences/skills.html", context)
 
 @login_required

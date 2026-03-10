@@ -19,7 +19,7 @@ class UserCompetence(models.Model):
     competence = models.ForeignKey(Competence, on_delete=models.CASCADE)
 
 class Slot(models.Model):
-    creator_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='slots_created' )
+    creator_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='slots_created' )
     helper_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='slots_helped')
     competence = models.ForeignKey(Competence,on_delete=models.CASCADE)
     activity = models.CharField(max_length=200)
