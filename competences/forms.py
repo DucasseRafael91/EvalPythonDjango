@@ -33,3 +33,13 @@ class AvailableForm(ModelForm):
     class Meta:
         model = Slot
         fields = ['date']
+
+class SubmitAvailableForm(ModelForm):
+
+    class Meta:
+        model = Slot
+        fields = ['activity', 'competence']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['competence'].queryset = Competence.objects.all()
