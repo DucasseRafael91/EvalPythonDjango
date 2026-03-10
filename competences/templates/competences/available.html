@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Mes compétences{% endblock %}
+
+{% block content %}
+<h2>Mes créneaux disponibles</h2>
+
+{% if available_slots_list %}
+    <ul>
+        {% for slot in available_slots_list %}
+            <li>{{ slot.date }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Vous n'avez pas de créneaux disponibles</p>
+{% endif %}
+
+<hr>
+
+<h3>Ajouter un créneau disponible</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Ajouter</button>
+</form>
+
+{% endblock %}
