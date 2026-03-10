@@ -1,5 +1,5 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required  # type: ignore
+from django.shortcuts import render  # type: ignore
 from django.shortcuts import get_object_or_404, redirect
 from .models import Slot
 from competences.forms import UserCompetenceForm, SlotForm

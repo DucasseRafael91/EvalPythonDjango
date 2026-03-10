@@ -1,7 +1,6 @@
-from django import forms
-from django.forms import ModelForm
+from django import forms  # type: ignore
+from django.forms import ModelForm  # type: ignore
 from .models import UserCompetence, Competence, Slot
-
 
 class UserCompetenceForm(ModelForm):
 

@@ -1,5 +1,5 @@
-from django.contrib.auth.models import User
-from django.db import models
+from django.contrib.auth.models import User  # type: ignore
+from django.db import models  # type: ignore
 
 class Categorie(models.Model):
     name = models.CharField(max_length=50)
