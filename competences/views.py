@@ -1,19 +1,23 @@
-from django.contrib.auth import user_logged_in
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-
+from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect
+from .models import Slot
 from competences.forms import UserCompetenceForm, SlotForm
-from competences.models import Slot, Competence, UserCompetence
+from competences.models import Competence, UserCompetence
 
 
 def index(request):
     slots_list = Slot.objects.filter(helper_user__isnull=False).order_by("-date")
     competences_list = Competence.objects.all()
-    my_slots_list_porposed = []
+    my_slots_list_proposed = []
     if request.user.is_authenticated:
-        my_slots_list_porposed = Slot.objects.filter(creator_user=request.user).filter(helper_user__isnull=False).order_by("-date")
-    context = {"slots_list": slots_list, "competences_list": competences_list, "my_slots_list_porposed": my_slots_list_porposed}
+        my_slots_list_proposed = (Slot.objects
+                                  .filter(creator_user=request.user)
+                                  .filter(helper_user__isnull=False)
+                                  .order_by("-date"))
+    context = {"slots_list": slots_list,
+               "competences_list": competences_list,
+               "my_slots_list_proposed": my_slots_list_proposed}
     return render(request, "competences/index.html", context)
 
 
@@ -35,7 +39,9 @@ def skills(request):
         form = UserCompetenceForm()
         form.fields["competence"].queryset = available_competences
 
-    context = {"user_competences_list": user_competences_list,"available_competences": available_competences,"form": form }
+    context = {"user_competences_list": user_competences_list,
+               "available_competences": available_competences,
+               "form": form}
 
     return render(request, "competences/skills.html", context)
 
@@ -64,12 +70,8 @@ def search(request):
     context = {"slots_list": slots_list}
     return render(request, "competences/search.html", context)
 
-from django.shortcuts import get_object_or_404, redirect
-from .models import Slot
-
 def purpose_help(request, slot_id):
     slot = get_object_or_404(Slot, id=slot_id)
     slot.helper_user = request.user
     slot.save()
     return redirect("competences:index")
-

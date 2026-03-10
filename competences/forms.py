@@ -17,7 +17,7 @@ class UserCompetenceForm(ModelForm):
 
 
 class SlotForm(ModelForm):
-    date = forms.DateField( widget=forms.DateInput(attrs={'type': 'date'}))
+    date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     competence = forms.ModelChoiceField(queryset=None, label="Compétence")
 
     class Meta:

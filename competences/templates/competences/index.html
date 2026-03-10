@@ -19,30 +19,31 @@
 {% if not user.is_authenticated %}
     <h2>Derniéres aides réalisées</h2>
     <hr>
-<div class="row">
-    {% if slots_list %}
-        {% for slot in slots_list %}
-            <div class="col-md-4 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Compétence : {{ slot.competence }}</h5>
-                        <p class="card-text">Activité : {{ slot.activity }}</p>
-                        <p class="card-text">Date : {{ slot.date }}</p>
+    <div class="row">
+        {% if slots_list %}
+            {% for slot in slots_list %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Compétence : {{ slot.competence }}</h5>
+                            <p class="card-text">Activité : {{ slot.activity }}</p>
+                            <p class="card-text">Date : {{ slot.date }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>Pas de créneau</p>
-    {% endif %}
-</div>
+            {% endfor %}
+        {% else %}
+            <p>Pas de créneau</p>
+        {% endif %}
+    </div>
 {% else %}
     <h2>Vos propositions d'aides</h2>
+    <hr>
     <div class="row">
-        {% if my_slots_list_porposed %}
-            {% for slot in my_slots_list_porposed %}
+        {% if my_slots_list_proposed %}
+            {% for slot in my_slots_list_proposed %}
                 <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm h-100">
                         <div class="card-body">
                             <h5 class="card-title">{{ slot.competence }}</h5>
                             <p class="card-text">Activité : {{ slot.activity }}</p>
@@ -55,7 +56,6 @@
         {% else %}
             <p>Pas de créneau</p>
         {% endif %}
-    <hr>
     </div>
 {% endif %}
 {% endblock %}

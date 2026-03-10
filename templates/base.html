@@ -18,7 +18,7 @@
 
 <body class="bg-light">
 
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark" aria-label="header">
     <div class="container-fluid">
         <a class="navbar-brand mb-0 h1 text-decoration-none" href="{% url 'competences:index' %}">
             Application Competence
@@ -39,7 +39,7 @@
 <div class="container-fluid">
     <div class="row">
 
-        <nav class="col-md-3 col-lg-2 d-md-block bg-white border-end sidebar p-3">
+        <nav class="col-md-3 col-lg-2 d-md-block bg-white border-end sidebar p-3" aria-label="navigation bar">
             <ul class="nav flex-column">
                 {% if not user.is_authenticated %}
                     <h5 class="mb-3">Toutes nos compétences disponibles</h5>
