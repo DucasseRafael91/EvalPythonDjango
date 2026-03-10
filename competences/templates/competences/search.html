@@ -9,9 +9,12 @@
 
 {% if slots_list %}
     <ul>
-        {% for slot in slots_list %}
-            <li>{{ slot }}</li>
-        {% endfor %}
+{% for slot in slots_list %}
+<li>
+    {{ slot }}
+    <a href="{% url 'competences:purpose_help' slot.id %}">Proposer</a>
+</li>
+{% endfor %}
     </ul>
 {% else %}
     <p>Aucun résultat trouvé.</p>
