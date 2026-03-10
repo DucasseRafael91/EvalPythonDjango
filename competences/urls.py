@@ -10,6 +10,7 @@ urlpatterns = [
     path('skills/', views.skills, name='skills'),
     path('add/', views.add_slot, name='add'),
     path('search/', views.search, name='search'),
+    path('purpose_help/<int:slot_id>/', views.purpose_help, name='purpose_help'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]

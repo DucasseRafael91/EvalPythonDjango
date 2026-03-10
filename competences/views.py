@@ -1,5 +1,6 @@
 from django.contrib.auth import user_logged_in
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from competences.forms import UserCompetenceForm, SlotForm
@@ -54,3 +55,13 @@ def search(request):
     slots_list = Slot.objects.filter(helper_user__isnull=True).exclude(creator_user=request.user)
     context = {"slots_list": slots_list}
     return render(request, "competences/search.html", context)
+
+from django.shortcuts import get_object_or_404, redirect
+from .models import Slot
+
+def purpose_help(request, slot_id):
+    slot = get_object_or_404(Slot, id=slot_id)
+    slot.helper_user = request.user
+    slot.save()
+    return redirect("competences:index")
+
