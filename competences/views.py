@@ -9,10 +9,12 @@ from competences.models import Competence, UserCompetence, Slot
 
 
 def index(request: HttpRequest) -> HttpResponse:
-    slots_list: QuerySet[Slot] = Slot.objects.filter(helper_user__isnull=False).order_by("-date")
+    slots_list: QuerySet[Slot] = (Slot.objects
+                                  .filter(helper_user__isnull=False)
+                                  .filter(creator_user__isnull=False)
+                                  .order_by("-date"))
     competences_list: QuerySet[Competence] = Competence.objects.all()
 
-    # Typage clair pour ma liste de slots proposés par l'utilisateur
     my_slots_list_proposed: QuerySet[Slot] | List[Slot] = []
 
     if request.user.is_authenticated:

@@ -4,6 +4,10 @@ left to right direction
 
 actor Visiteur as v
 actor Utilisateur as u
+actor Administrateur as a
+
+v <- u
+u <- a
 
 
 rectangle Competences {
@@ -16,6 +20,8 @@ rectangle Competences {
   usecase "Indiquer qu’il désire se rendre disponible" as UC7
   usecase "Afficher les prochains créneaux où un autre utilisateur a indiqué se rendre disponible pour l’aider" as UC8
   usecase "Se connecter" as UC9
+  usecase "Créer des compétences" as UC10
+  usecase "Créer des catégories" as UC11
 }
 
 v -- UC1
@@ -25,6 +31,8 @@ u -- UC4
 u -- UC5
 u -- UC6
 u -- UC8
+a -- UC10
+a -- UC11
 
  UC9 .up.> UC3 : include
  UC9 .up.> UC4 : include
@@ -32,5 +40,8 @@ u -- UC8
  UC9 .up.> UC6 : include
  UC7 .up.> UC6 : extends
  UC9 .up.> UC8 : include
+ UC9 .up.> UC10 : include
+ UC9 .up.> UC11 : include
+ UC9 .up.> UC11 : include
 
 @enduml
