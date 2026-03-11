@@ -1,4 +1,4 @@
-{+:extends "base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}Accueil{% endblock %}
@@ -28,6 +28,7 @@
                             <h5 class="card-title">Compétence : {{ slot.competence }}</h5>
                             <p class="card-text">Categorie : {{ slot.competence.categorie }}</p>
                             <p class="card-text">Activité : {{ slot.activity }}</p>
+                            <p class="card-text">Date : {{ slot.date }}</p>
                         </div>
                     </div>
                 </div>
