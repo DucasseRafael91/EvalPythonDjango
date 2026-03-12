@@ -31,8 +31,10 @@ evalPythonDjango-
 Effectuer git clone : https://github.com/DucasseRafael91/EvalPythonDjango.git
 
 Puis dans le répertoire du projet :
-faire py -m pip install Django==5.2.12 pour installer le framework Django 
-faire pip install django-bootstrap5 pour installer le package django-bootstrap5
+
+faire py -m pip install Django==5.2.12 pour installer le framework Django
+
+Faire pip install django-bootstrap5 pour installer le package django-bootstrap5
 
 ## Fonctionnalités
 

@@ -8,7 +8,15 @@ from competences.forms import UserCompetenceForm, SlotForm, AvailableForm, Submi
 from competences.models import Competence, UserCompetence, Slot
 
 
+
+
 def index(request: HttpRequest) -> HttpResponse:
+    '''
+    Affiche la page d'accueil avec les créneaux proposés, les compétences disponibles et les créneaux proposés par l'utilisateur connecté.
+
+    Param request : HttpRequest - la requête HTTP reçue par la vue.
+    Return : HttpResponse - la réponse HTTP contenant le rendu de la page d'accueil.
+    '''
     slots_list: QuerySet[Slot] = (Slot.objects
                                   .filter(helper_user__isnull=False)
                                   .filter(creator_user__isnull=False)
@@ -34,6 +42,12 @@ def index(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def skills(request: HttpRequest) -> HttpResponse:
+    '''
+    Affiche la page des compétences de l'utilisateur connecté, avec un formulaire pour ajouter de nouvelles compétences.
+
+    Param request : HttpRequest - la requête HTTP reçue par la vue.
+    Return : HttpResponse - la réponse HTTP contenant le rendu de la page d'accueil.
+    '''
     user_competences_list: QuerySet[UserCompetence] = UserCompetence.objects.filter(user=request.user)
     available_competences: QuerySet[Competence] = Competence.objects.exclude(usercompetence__in=user_competences_list)
 
@@ -60,6 +74,12 @@ def skills(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def available(request: HttpRequest) -> HttpResponse:
+    '''
+    Affiche la page des créneaux disponibles proposés par l'utilisateur connecté, avec un formulaire pour ajouter de nouveaux créneaux.
+
+    Param request : HttpRequest - la requête HTTP reçue par la vue.
+    Return : HttpResponse - la réponse HTTP contenant le rendu de la page d'accueil.
+    '''
     available_slots_list: QuerySet[Slot] = (Slot.objects.filter(helper_user=request.user)
                                             .filter(creator_user__isnull=True)
                                             .order_by("-date"))
@@ -80,6 +100,13 @@ def available(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def add_slot(request: HttpRequest) -> HttpResponse:
+
+    '''
+    Affiche la page pour ajouter un créneau proposé par l'utilisateur connecté, avec un formulaire pour ajouter de nouveaux créneaux.
+
+    Param request : HttpRequest - la requête HTTP reçue par la vue.
+    Return : HttpResponse - la réponse HTTP contenant le rendu de la page d'accueil.
+    '''
     used_competences: QuerySet[UserCompetence] = UserCompetence.objects.filter(user=request.user)
     available_competences: QuerySet[Competence] = Competence.objects.exclude(usercompetence__in=used_competences)
 
@@ -100,6 +127,12 @@ def add_slot(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def submit_available(request, slot_id):
+    '''
+    Affiche la page pour soumettre un créneau disponible proposé par l'utilisateur connecté, avec un formulaire pour ajouter de nouveaux créneaux.
+
+    Param request : HttpRequest - la requête HTTP reçue par la vue.
+    Return : HttpResponse - la réponse HTTP contenant le rendu de la page d'accueil.
+    '''
 
     slot = get_object_or_404(Slot, id=slot_id)
 
@@ -127,12 +160,24 @@ def submit_available(request, slot_id):
 
 @login_required
 def search(request: HttpRequest) -> HttpResponse:
+    '''
+    Affiche la page de recherche de créneaux proposés par d'autres utilisateurs, avec une liste de créneaux disponibles.
+
+    Param request : HttpRequest - la requête HTTP reçue par la vue.
+    Return : HttpResponse - la réponse HTTP contenant le rendu de la page d'accueil.
+    '''
     slots_list: QuerySet[Slot] = Slot.objects.filter(helper_user__isnull=True).exclude(creator_user=request.user)
     context = {"slots_list": slots_list}
     return render(request, "competences/search.html", context)
 
 @login_required
 def search_available_slots(request: HttpRequest) -> HttpResponse:
+    '''
+    Affiche la page de recherche de créneaux proposés par d'autres utilisateurs, avec une liste de créneaux disponibles.
+
+    Param request : HttpRequest - la requête HTTP reçue par la vue.
+    Return : HttpResponse - la réponse HTTP contenant le rendu de la page d'accueil.
+    '''
     slots_list: QuerySet[Slot] = (Slot.objects
                                   .filter(helper_user__isnull=False)
                                   .filter(creator_user__isnull=True)
@@ -143,6 +188,12 @@ def search_available_slots(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def purpose_help(request: HttpRequest, slot_id: int) -> HttpResponse:
+    '''
+    Fonction pour proposer de l'aide pour un créneau proposé par un autre utilisateur
+
+    Param request : HttpRequest - la requête HTTP reçue par la vue.
+    Return : HttpResponse - la réponse HTTP contenant le rendu de la page d'accueil.
+    '''
     slot: Slot = get_object_or_404(Slot, id=slot_id)
     slot.helper_user = request.user
     slot.save()
