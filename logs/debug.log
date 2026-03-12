@@ -1951,3 +1951,105 @@ File C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\ev
 (0.000) SELECT "competences_competence"."id", "competences_competence"."name", "competences_competence"."categorie_id" FROM "competences_competence" WHERE "competences_competence"."id" = 1 LIMIT 21; args=(1,); alias=default
 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 4 LIMIT 21; args=(4,); alias=default
 "GET /competences/ HTTP/1.1" 200 4924
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\core\handlers\base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\urls\resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <module 'competences.urls' from 'C:\\Users\\DucasseR\\OneDrive - Facylities Multi Services\\Documents\\Modules\\evalPythonDjango\\competences\\urls.py'> (competences:competences) 'competences/'>], [<URLResolver <URLPattern list> (admin:admin) 'admin/'>]], 'path': ''}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\template\base.py", line 892, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\template\base.py", line 909, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\template\base.py", line 916, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'competences.urls' from 'C:\\Users\\DucasseR\\OneDrive - Facylities Multi Services\\Documents\\Modules\\evalPythonDjango\\competences\\urls.py'> (competences:competences) 'competences/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+                                               ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\core\handlers\base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\urls\resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <module 'competences.urls' from 'C:\\Users\\DucasseR\\OneDrive - Facylities Multi Services\\Documents\\Modules\\evalPythonDjango\\competences\\urls.py'> (competences:competences) 'competences/'>], [<URLResolver <URLPattern list> (admin:admin) 'admin/'>]], 'path': ''}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\template\base.py", line 892, in _resolve_lookup
+    raise TypeError
+TypeError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\template\base.py", line 903, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\template\base.py", line 909, in _resolve_lookup
+    current = current[int(bit)]
+                      ~~~^^^^^
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\DucasseR\OneDrive - Facylities Multi Services\Documents\Modules\evalPythonDjango\.venv\Lib\site-packages\django\template\base.py", line 916, in _resolve_lookup
+    raise VariableDoesNotExist(
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )  # missing attribute
+    ^
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+Not Found: /
+"GET / HTTP/1.1" 404 2312
+(0.000) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2026-03-12 07:35:34.352729' AND "django_session"."session_key" = '1jwg0jym4pt11u4l6a3yqosuganc1qhs') LIMIT 21; args=('2026-03-12 07:35:34.352729', '1jwg0jym4pt11u4l6a3yqosuganc1qhs'); alias=default
+(0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 2 LIMIT 21; args=(2,); alias=default
+(0.000) SELECT "competences_slot"."id", "competences_slot"."creator_user_id", "competences_slot"."helper_user_id", "competences_slot"."competence_id", "competences_slot"."activity", "competences_slot"."date" FROM "competences_slot" WHERE ("competences_slot"."creator_user_id" = 2 AND "competences_slot"."helper_user_id" IS NOT NULL) ORDER BY "competences_slot"."date" DESC; args=(2,); alias=default
+(0.000) SELECT "competences_competence"."id", "competences_competence"."name", "competences_competence"."categorie_id" FROM "competences_competence" WHERE "competences_competence"."id" = 4 LIMIT 21; args=(4,); alias=default
+(0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+(0.000) SELECT "competences_competence"."id", "competences_competence"."name", "competences_competence"."categorie_id" FROM "competences_competence" WHERE "competences_competence"."id" = 5 LIMIT 21; args=(5,); alias=default
+(0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 3 LIMIT 21; args=(3,); alias=default
+(0.000) SELECT "competences_competence"."id", "competences_competence"."name", "competences_competence"."categorie_id" FROM "competences_competence" WHERE "competences_competence"."id" = 1 LIMIT 21; args=(1,); alias=default
+(0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 4 LIMIT 21; args=(4,); alias=default
+"GET /competences/ HTTP/1.1" 200 4924
