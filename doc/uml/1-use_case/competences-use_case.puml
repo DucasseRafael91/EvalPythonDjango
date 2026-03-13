@@ -6,8 +6,8 @@ actor Visiteur as v
 actor Utilisateur as u
 actor Administrateur as a
 
-v <- u
-u <- a
+v <|- u
+u <|- a
 
 
 rectangle Competences {

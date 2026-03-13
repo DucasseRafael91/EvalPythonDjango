@@ -4,8 +4,6 @@
 
 - d’afficher les prochains créneaux où un utilisateur a proposé d’apporter son aide – à travers une de ses compétences – à un autre utilisateur pour une activité,
 - d’afficher la liste des compétences que l’application propose à ses utilisateurs d’échanger
-- d’afficher toutes les formations contenant un mot clé
-- d'afficher toutes les formations en présentiel ou distanciel
 
 ### Pour les utilisateurs :
 
